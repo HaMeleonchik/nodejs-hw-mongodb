@@ -1,34 +1,21 @@
-import express from 'express';
-
 import { Contacts } from '../db/models/contactsSchema.js';
 
-const contactsRouter = express.Router();
+export const getContact = () => {
+  return Contacts.find();
+};
 
-contactsRouter.get('/', async (req, res) => {
-  const contacts = await Contacts.find();
-  res.json({
-    status: 200,
-    message: 'Successfully found contacts!',
-    data: contacts,
-  });
-});
+export const getContactById = (contactId) => {
+  return Contacts.findById(contactId);
+};
 
-contactsRouter.get('/:contactId', async (req, res) => {
-  const { contactId } = req.params;
+export const createContact = (payload) => {
+  return Contacts.create(payload);
+};
 
-  const contact = await Contacts.findById(contactId);
-  if (contact === null) {
-    res.json({
-      status: 404,
-      message: 'Contact not found',
-    });
-  }
+export const deleteContact = (contactId) => {
+  return Contacts.findByIdAndDelete(contactId);
+};
 
-  res.json({
-    status: 200,
-    message: `Successfully found contact with id ${contactId}!`,
-    data: contact,
-  });
-});
-
-export default contactsRouter;
+export const updateContact = (contactId, payload) => {
+  return Contacts.findByIdAndUpdate(contactId, payload, { new: true });
+};
