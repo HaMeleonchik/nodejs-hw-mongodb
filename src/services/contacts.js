@@ -3,8 +3,8 @@ import { Contacts } from '../db/models/contactsSchema.js';
 export const getContact = async ({
   page,
   perPage,
-  SortBy,
-  SortOrder,
+  sortBy,
+  sortOrder,
   filter,
 }) => {
   const skip = page > 0 ? (page - 1) * perPage : 0;
@@ -19,12 +19,12 @@ export const getContact = async ({
     contactsQuery.where('contactType').equals(filter.type);
   }
 
-  const [contacts, totalItems] = await Promise.all([
+  const [totalItems, contacts] = await Promise.all([
+    Contacts.find().merge(contactsQuery).countDocuments(),
     contactsQuery
-      .sort({ [SortBy]: SortOrder })
+      .sort({ [sortBy]: sortOrder })
       .skip(skip)
       .limit(perPage),
-    Contacts.find().merge(contactsQuery).countDocuments(),
   ]);
 
   const totalPages = Math.ceil(totalItems / perPage);
