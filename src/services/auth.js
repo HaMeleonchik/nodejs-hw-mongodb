@@ -66,7 +66,7 @@ export const refreshSession = async (sessionId, refreshToken) => {
   await Session.deleteOne({ userId: session.userId });
 
   return Session.create({
-    userId: session._id,
+    userId: session.userId,
     accessToken: crypto.randomBytes(30).toString('base64'),
     refreshToken: crypto.randomBytes(30).toString('base64'),
     accessTokenValidUntil: new Date(Date.now() + 15 * 60 * 1000),
