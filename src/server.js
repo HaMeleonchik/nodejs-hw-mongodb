@@ -2,9 +2,12 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import pino from 'pino-http';
-import contactsRouter from './services/contacts.js';
+import router from './routers/index.js';
 import { initMongoConnection } from './db/initMongoConnection.js';
-
+import { errorHandler } from './middlewares/errorHandler.js';
+import { notFoundHandler } from './middlewares/notFoundHandler.js';
+import cookieParser from 'cookie-parser';
+import path from 'node:path';
 const app = express();
 
 app.use(
@@ -17,7 +20,17 @@ app.use(
 
 app.use(cors());
 
-app.use('/contacts', contactsRouter);
+app.use(express.json());
+
+app.use(cookieParser());
+
+app.use('/photo', express.static(path.resolve('src', 'uploads', 'photo')));
+
+app.use(router);
+
+app.use(notFoundHandler);
+
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
 
