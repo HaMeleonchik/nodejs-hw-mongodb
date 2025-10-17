@@ -7,6 +7,7 @@ import {
   loginSchema,
   requestResetPasswordSchema,
   resetPasswordSchema,
+  confirmOauthSchema,
 } from '../validation/auth.js';
 import {
   registerUserController,
@@ -15,6 +16,8 @@ import {
   refreshSessionController,
   requestResetPasswordController,
   resetPasswordController,
+  getOauthUrlController,
+  confirmOauthController,
 } from '../controllers/auth.js';
 
 const router = Router();
@@ -44,6 +47,13 @@ router.post(
   '/reset-pwd',
   validateBody(resetPasswordSchema),
   ctrlWrapper(resetPasswordController),
+);
+router.get('/get-oauth-url', ctrlWrapper(getOauthUrlController));
+
+router.post(
+  '/confirm-oaut',
+  validateBody(confirmOauthSchema),
+  ctrlWrapper(confirmOauthController),
 );
 
 export default router;
