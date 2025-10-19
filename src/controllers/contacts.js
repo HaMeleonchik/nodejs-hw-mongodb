@@ -90,9 +90,7 @@ export const deleteContactController = async (req, res) => {
     throw new createHttpError.NotFound('Contact not found');
   }
 
-  res.status(204).json({
-    status: 204,
-  });
+  res.status(204).send();
 };
 
 export const updateContactController = async (req, res) => {

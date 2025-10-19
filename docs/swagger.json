@@ -2,16 +2,16 @@
   "openapi": "3.1.0",
   "info": {
     "version": "1.0.0",
-    "title": "<назва вашого додатку>",
+    "title": "ApiContacts",
     "license": {
       "name": "Apache 2.0",
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "description": "<опис вашого додатку>"
+    "description": "Web api contacts"
   },
   "servers": [
     {
-      "url": "http://localhost:3000"
+      "url": "https://nodejs-hw-mongodb-hw7-js4g.onrender.com"
     }
   ],
   "tags": [
@@ -196,9 +196,7 @@
                 "type": "object",
                 "required": [
                   "name",
-                  "phoneNumber",
-                  "contactType",
-                  "photo"
+                  "phoneNumber"
                 ],
                 "properties": {
                   "name": {
@@ -210,6 +208,11 @@
                     "type": "string",
                     "description": "Contact phone number",
                     "example": 380965555555
+                  },
+                  "isFavourite": {
+                    "type": "boolean",
+                    "description": "Is favourite contact",
+                    "example": false
                   },
                   "contactType": {
                     "type": "string",
@@ -223,8 +226,8 @@
                   },
                   "photo": {
                     "type": "string",
-                    "description": "Link to contact's photo",
-                    "example": "https://res.cloudinary.com/uqwgdu/image/upload/image.png"
+                    "format": "binary",
+                    "description": "Contact photo file"
                   }
                 }
               }
@@ -341,12 +344,6 @@
             "multipart/form-data": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "phoneNumber",
-                  "contactType",
-                  "photo"
-                ],
                 "properties": {
                   "name": {
                     "type": "string",
@@ -357,6 +354,11 @@
                     "type": "string",
                     "description": "Contact phone number",
                     "example": 380965555555
+                  },
+                  "isFavourite": {
+                    "type": "boolean",
+                    "description": "Is favourite contact",
+                    "example": false
                   },
                   "contactType": {
                     "type": "string",
@@ -448,23 +450,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Contact successfully deleted",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "status"
-                  ],
-                  "properties": {
-                    "status": {
-                      "type": "integer",
-                      "example": 204
-                    }
-                  }
-                }
-              }
-            }
+            "description": "Contact successfully deleted"
           },
           "404": {
             "$ref": "#/components/responses/404"
