@@ -13,8 +13,6 @@ requestBody:
         required:
           - name
           - phoneNumber
-          - contactType
-          - photo
         properties:
           name:
             type: string
@@ -26,6 +24,11 @@ requestBody:
             description: Contact phone number
             example: +380965555555
 
+          isFavourite:
+            type: boolean
+            description: Is favourite contact
+            example: false
+
           contactType:
             type: string
             description: Contact type
@@ -34,8 +37,8 @@ requestBody:
 
           photo:
             type: string
-            description: Link to contact's photo
-            example: https://res.cloudinary.com/uqwgdu/image/upload/image.png
+            format: binary
+            description: Contact photo file
 responses:
   '201':
     description: 'Creates a contact'
