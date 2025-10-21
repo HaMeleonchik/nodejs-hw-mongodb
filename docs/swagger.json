@@ -209,6 +209,11 @@
                     "description": "Contact phone number",
                     "example": 380965555555
                   },
+                  "email": {
+                    "type": "string",
+                    "description": "Contact email",
+                    "example": "VadimSichak@gmail.com"
+                  },
                   "isFavourite": {
                     "type": "boolean",
                     "description": "Is favourite contact",
@@ -275,7 +280,7 @@
           "Contacts"
         ],
         "summary": "Get contacts by id",
-        "operationId": "getContacts",
+        "operationId": "getContactsById",
         "description": "Get contacts by id",
         "security": [
           {
@@ -355,6 +360,11 @@
                     "description": "Contact phone number",
                     "example": 380965555555
                   },
+                  "email": {
+                    "type": "string",
+                    "description": "Contact email",
+                    "example": "VadimSichak@gmail.com"
+                  },
                   "isFavourite": {
                     "type": "boolean",
                     "description": "Is favourite contact",
@@ -372,8 +382,8 @@
                   },
                   "photo": {
                     "type": "string",
-                    "description": "Link to contact's photo",
-                    "example": "https://res.cloudinary.com/uqwgdu/image/upload/image.png"
+                    "format": "binary",
+                    "description": "Contact photo file"
                   }
                 }
               }
