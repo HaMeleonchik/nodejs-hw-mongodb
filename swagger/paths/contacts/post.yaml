@@ -24,6 +24,11 @@ requestBody:
             description: Contact phone number
             example: +380965555555
 
+          email:
+            type: string
+            description: Contact email
+            example: VadimSichak@gmail.com
+
           isFavourite:
             type: boolean
             description: Is favourite contact
