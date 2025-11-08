@@ -18,9 +18,12 @@ import {
   resetPasswordController,
   getOauthUrlController,
   confirmOauthController,
+  getUserController,
 } from '../controllers/auth.js';
 
 const router = Router();
+
+router.get('/', ctrlWrapper(getUserController));
 
 router.post(
   '/register',

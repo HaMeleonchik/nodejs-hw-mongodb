@@ -133,3 +133,11 @@ export async function confirmOauthController(req, res) {
     },
   });
 }
+
+export async function getUserController(req, res) {
+  res.json({
+    status: 200,
+    message: 'Successfully ',
+    data: {},
+  });
+}

@@ -149,3 +149,15 @@ export const loginOrRegister = async (email, name) => {
     refreshTokenValidUntil: new Date(Date.now() + 30 * 24 * 10 * 60 * 1000),
   });
 };
+
+export const getUser = async (payload) => {
+  const user = await User.find({ email: payload.email });
+
+  if (user !== null) {
+    throw createHttpError.Conflict('Email is already is use');
+  }
+
+  return await User.create({
+    data: user,
+  });
+};
